@@ -1,11 +1,15 @@
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { useEffect, useState } from "react";
 import './App.css'
+
 import { LoginForm, insertUserInfo } from "./components/LoginForm"
 import { Sidebar } from "./components/SidebarMenu";
 import { PageContent } from "./components/PageContent";
-import { ProgressBar } from "./components/ProgressBar"
 import { Header } from "./components/Header";
+import { Loader } from "./components/Loader";
+
 import type { Page } from './types/types';
+
 import supabase from "./supabase-client";
 
 function App() {
@@ -31,7 +35,7 @@ function App() {
           setSession(session);
           setCurrentPage('dashboard');
           
-          // Проверяем пользователя в фоне, не блокируя UI
+          // Check the user in the background without blocking the UI
           setTimeout(async () => {
             try {
               // console.log('🔍 Background check for existing user...');
@@ -67,11 +71,11 @@ function App() {
 
     initializeAuth();
     
-    // Обрабатываем только будущие изменения
+    // Process only future changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       // console.log('🔄 Auth state change:', event, !!session);
       
-      // Игнорируем начальные события
+      // Ignore the initial events
       if (event === 'INITIAL_SESSION') {
         return;
       }
@@ -85,7 +89,7 @@ function App() {
         setSession(session);
         setCurrentPage('dashboard');
         
-        // Создаем пользователя в фоне
+        // Creating a user in the background
         setTimeout(async () => {
           try {
             const { data: existingUser } = await supabase
@@ -104,7 +108,7 @@ function App() {
       } else if (event === 'TOKEN_REFRESHED') {
         // console.log('🔄 Token refreshed');
         setSession(session);
-        // Не меняем currentPage при обновлении токена
+        // Do not change the currentPage when updating the token
       }
     });
     
@@ -119,15 +123,10 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  // Показываем загрузку
+  // Show table
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="text-center space-y-4">
-          <div className="text-xl font-semibold text-gray-700">Loading...</div>
-          <ProgressBar />
-        </div>
-      </div>
+      <Loader />
     );
   }
 
@@ -171,6 +170,7 @@ function App() {
           setCurrentPage={setCurrentPage} 
         />
       </div>
+      <SpeedInsights />
     </div>
   );
 }

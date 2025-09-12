@@ -1,20 +1,7 @@
 import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
 
-const chartData = [
-    { month: 'Jan', views: 95000 },
-    { month: 'Feb', views: 110000 },
-    { month: 'Mar', views: 125000 },
-    { month: 'Apr', views: 98000 },
-    { month: 'May', views: 145000 },
-    { month: 'Jun', views: 160000 },
-    { month: 'Jul', views: 150000 },
-    { month: 'Aug', views: 145000 },
-    { month: 'Sep', views: 110000 },
-    { month: 'Okt', views: 115000 },
-    { month: 'Nov', views: 110000 },
-    { month: 'Dec', views: 130000 }
-]
+import mockStats from "../../data"
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -50,7 +37,7 @@ export function ChartBarDefault() {
       <div className="flex-1 min-h-[150px] sm:min-h-[180px] lg:min-h-[200px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart 
-            data={chartData}
+            data={mockStats.monthlyViews}
             margin={{
               top: 5,
               right: 10,

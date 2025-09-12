@@ -63,7 +63,6 @@ export function LoginForm({
   setCurrentPage,
   ...props}: SessionProps) {
   
-  // const [session, setSession] = useState<Object | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loginOrSignUp, setLoginOrSignUp] = useState<"login" | "signup">("login");
@@ -315,6 +314,7 @@ export function LoginForm({
                     <Input 
                       id="password" 
                       type="password" 
+                      placeholder="●●●●●●●●"
                       {...register("password")}
                       className={errors.password ? "border-red-500" : ""}
                     />

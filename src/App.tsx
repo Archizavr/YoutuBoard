@@ -1,12 +1,12 @@
-import { SpeedInsights } from "@vercel/speed-insights/react"
 import { useEffect, useState } from "react";
 import './App.css'
 
-import { LoginForm, insertUserInfo } from "./components/LoginForm"
+import { insertUserInfo } from "./components/LoginForm"
 import { Sidebar } from "./components/SidebarMenu";
 import { PageContent } from "./components/PageContent";
 import { Header } from "./components/Header";
 import { Loader } from "./components/Loader";
+import Auth from "./components/Auth";
 
 import type { Page } from './types/types';
 
@@ -133,9 +133,18 @@ function App() {
   // Проверяем аутентификацию
   const isAuthenticated = session && (session as any)?.user;
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return (
-      <div className="w-full">
+      <Auth 
+        session={session}
+        setSession={setSession}
+        setCurrentPage={setCurrentPage}
+      />
+    );
+  }
+
+  return (
+    <div className="w-full">
         <div className="min-h-screen w-full bg-gradient-to-br flex">
           <Sidebar
             isOpen={isMenuOpen}
@@ -152,26 +161,6 @@ function App() {
           </div>
         </div>
       </div>
-    );
-  }
-
-  // Показываем форму логина
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="text-center pt-8">
-        <h1 className="text-4xl font-semibold font-sans pb-2">
-          Welcome to YoutuBoard, great place to see your channel statistics!
-        </h1>
-      </div>
-      <div className="flex items-start justify-center pt-4">
-        <LoginForm 
-          session={session} 
-          setSession={setSession} 
-          setCurrentPage={setCurrentPage} 
-        />
-      </div>
-      <SpeedInsights />
-    </div>
   );
 }
 

@@ -3,6 +3,8 @@ import { Button } from './ui/button';
 
 import type { Page } from "@/types/types";
 
+import logo from "../../public/bar-chart-icon.svg";
+
 import supabase from '@/supabase-client';
 
 interface SidebarProps {
@@ -48,7 +50,7 @@ export function Sidebar({
       
       {/* Sidebar */}
       <div className={`
-        w-64 bg-slate-400/30 backdrop-blur-sm border-r border-slate-700/50 z-50 transition-all duration-300 ease-in-out
+        w-64 bg-slate-400/60 backdrop-blur-sm border-r border-slate-700/50 z-50 transition-all duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         lg:flex lg:flex-col
         fixed lg:static h-full lg:h-screen lg:min-h-screen
@@ -57,17 +59,17 @@ export function Sidebar({
         <div className="p-6 border-b border-slate-700/50">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <BarChart3 className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 bg-white shadow-md rounded-lg flex items-center justify-center">
+                <img src={logo} alt='Logo' />
               </div>
               <div>
-                <h2 className="text-cyan-900 text-lg font-semibold">Analytics</h2>
-                <p className="text-slate-700 text-base">Guest_X</p>
+                <h2 className="lg:text-slate-800 text-blue-200 text-lg font-semibold">YoutuBoard</h2>
+                <p className="lg:text-slate-700 text-cyan-200 text-base">Guest_X</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="lg:hidden text-slate-400 hover:text-white cursor-pointer"
+              className="lg:hidden text-slate-300 hover:text-white cursor-pointer"
             >
               <X className="w-7 h-7" />
             </button>

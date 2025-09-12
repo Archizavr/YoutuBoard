@@ -47,7 +47,7 @@ export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
         </div>
 
         {/* Subscribers */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all h-[200px] flex flex-col justify-center">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all h-[250px] flex flex-col justify-center">
           <div className="flex items-center justify-between mb-4">
             <div className="bg-gray-100 p-3 rounded-lg">
               <Users className="w-8 h-8 text-gray-700" />

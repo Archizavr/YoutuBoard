@@ -4,7 +4,7 @@ import { LoginForm } from "./LoginForm";
 
 import type { Page } from "@/types/types";
 
-import { SpeedInsights } from "@vercel/speed-insights/react";
+// import { SpeedInsights } from "@vercel/speed-insights/react";
 
 interface AuthProps {
     session?: Object | null;
@@ -28,7 +28,7 @@ export default function Auth ({session, setSession, setCurrentPage} : AuthProps)
                 setCurrentPage={setCurrentPage} 
                 />
             </div>
-            <SpeedInsights />
+            {/* <SpeedInsights /> */}
         </div>
     );
 }

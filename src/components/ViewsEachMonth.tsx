@@ -1,5 +1,13 @@
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Tooltip } from "recharts"
+import { 
+  Bar, 
+  BarChart, 
+  CartesianGrid, 
+  XAxis, 
+  YAxis, 
+  ResponsiveContainer, 
+  Tooltip 
+} from "recharts"
 
 import mockStats from "../../data"
 

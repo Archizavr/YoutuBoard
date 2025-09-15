@@ -1,9 +1,14 @@
-import { X, User, BarChart3, FileText } from 'lucide-react';
+import { 
+  X, 
+  User, 
+  BarChart3, 
+  FileText 
+} from 'lucide-react';
 import { Button } from './ui/button';
 
 import type { Page } from "@/types/types";
 
-import logo from "../../public/bar-chart-icon.svg";
+import logo from "../bar-chart-icon.svg";
 
 import supabase from '@/supabase-client';
 

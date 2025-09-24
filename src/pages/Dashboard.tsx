@@ -6,15 +6,15 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress"
-import { ChartBarDefault } from './ViewsEachMonth'
-import { QuickActions } from './QuickActions'
+import { ChartBarDefault } from '../components/ViewsEachMonth'
+import { QuickActions } from '../components/QuickActions'
 
-import type { DashboardStats } from '@/types/types'
+import mockStats from "../../data"
 
 // Dashboard
-export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
+export const DashboardPage = () => (
   <div className="space-y-8">
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between ml-2 mt-1">
       <div className="text-gray-600 text-lg">
         Last update: {new Date().toLocaleDateString('ru-RU')}
       </div>
@@ -33,7 +33,7 @@ export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
             <div className="text-right">
               <p className="text-gray-600 text-xl font-medium">Monthly income</p>
               <p className="text-3xl font-bold text-gray-900 mt-1">
-                ${Math.round(stats.totalEarnings / 12).toLocaleString()}
+                ${Math.round(mockStats.totalEarnings / 12).toLocaleString()}
               </p>
               <div className="flex items-center justify-end mt-2 text-base text-gray-700">
                 <TrendingUp className="h-6 w-6 mr-1" />
@@ -55,11 +55,11 @@ export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
             <div className="text-right">
               <p className="text-gray-600 text-xl font-medium">Subscribers</p>
               <p className="text-3xl font-bold text-gray-900 mt-1">
-                {stats.subscribers.toLocaleString()}
+                {mockStats.subscribers.toLocaleString()}
               </p>
-              <div className={`flex items-center justify-end mt-2 text-base ${stats.subscribersChange > 0 ? 'text-gray-700' : 'text-gray-500'}`}>
-                <TrendingUp className={`h-6 w-6 mr-1 ${stats.subscribersChange < 0 && 'rotate-180'}`} />
-                {stats.subscribersChange > 0 ? '+' : ''}{stats.subscribersChange}
+              <div className={`flex items-center justify-end mt-2 text-base ${mockStats.subscribersChange > 0 ? 'text-gray-700' : 'text-gray-500'}`}>
+                <TrendingUp className={`h-6 w-6 mr-1 ${mockStats.subscribersChange < 0 && 'rotate-180'}`} />
+                {mockStats.subscribersChange > 0 ? '+' : ''}{mockStats.subscribersChange}
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
               <div className="text-right">
                 <p className="text-gray-600 text-xl font-medium">Weekly views</p>
                 <p className="text-3xl font-bold text-gray-900 mt-1">
-                  {stats.weeklyViews.toLocaleString()}
+                  {mockStats.weeklyViews.toLocaleString()}
                 </p>
                 <div className="flex items-center justify-end mt-2 text-base text-gray-700">
                   <TrendingUp className="h-6 w-6 mr-1" />
@@ -106,7 +106,7 @@ export const DashboardPage = ({ stats } : { stats: DashboardStats }) => (
               <div className="text-right">
                 <p className="text-gray-600 text-xl font-medium">Average views</p>
                 <p className="text-3xl font-bold text-gray-900 mt-1">
-                  {Math.round(stats.monthlyViews.reduce((acc, m) => acc + m.views, 0) / stats.monthlyViews.length).toLocaleString()}
+                  {Math.round(mockStats.monthlyViews.reduce((acc, m) => acc + m.views, 0) / mockStats.monthlyViews.length).toLocaleString()}
                 </p>
                 <div className="flex items-center justify-end mt-2 text-base text-gray-700">
                   <TrendingUp className="h-6 w-6 mr-1" />

@@ -9,7 +9,6 @@ export interface User {
 export interface SessionProps extends React.ComponentProps<"div"> {
   session?: Object | null;
   setSession?: Dispatch<SetStateAction<Object | null>>;
-  setCurrentPage: Dispatch<SetStateAction<Page>>;
 }
 
 export interface SidebarProps {

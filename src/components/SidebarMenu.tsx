@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router';
+
 import { 
   X, 
   User, 
@@ -26,6 +28,8 @@ export function Sidebar({
   onPageChange,
 }: SidebarProps) {
   
+  const navigate = useNavigate();
+  
   const handlePageChange = (page: Page) => {
     onPageChange(page);
     onClose();
@@ -38,6 +42,7 @@ export function Sidebar({
               throw new Error(error.message)
           }
           onPageChange("auth")
+          navigate("/auth/login")
       } catch(error) {
           console.log(error);
       }
@@ -86,7 +91,10 @@ export function Sidebar({
           <ul className="space-y-2">
             <li>
               <button
-                onClick={() => handlePageChange('profile')}
+                onClick={() => {
+                  handlePageChange('profile')
+                  navigate("/app/profile")
+                }}
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 text-lg cursor-pointer
                   ${currentPage === 'profile' 
@@ -101,7 +109,10 @@ export function Sidebar({
             </li>
             <li>
               <button
-                onClick={() => handlePageChange('dashboard')}
+                onClick={() => {
+                  handlePageChange('dashboard')
+                  navigate("/app/dashboard")
+                }}
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 text-lg cursor-pointer
                   ${currentPage === 'dashboard' 
@@ -116,7 +127,10 @@ export function Sidebar({
             </li>
             <li>
               <button
-                onClick={() => handlePageChange('reports')}
+                onClick={() => {
+                  handlePageChange('reports')
+                  navigate("/app/reports")
+                }}
                 className={`
                   w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 text-lg cursor-pointer
                   ${currentPage === 'reports' 

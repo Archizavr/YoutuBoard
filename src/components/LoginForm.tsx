@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -57,10 +56,8 @@ export const insertUserInfo = async (session: Session | null) => {
 };
 
 export function LoginForm({
-  className, 
   session, 
   setSession,
-  setCurrentPage,
   ...props}: SessionProps) {
   
   const [serverError, setServerError] = useState<string | null>(null);
@@ -234,7 +231,7 @@ export function LoginForm({
   if (forgotPass) {
     return (
       <div className="min-h-130 min-w-80 flex items-center justify-center text-2xl pt-7">
-        <div className={cn("w-full max-w-md", className)} {...props}>
+        <div className="w-full max-w-md" {...props}>
           <Card>
             <CardHeader>
               <CardTitle>Reset your password</CardTitle>
@@ -283,7 +280,7 @@ export function LoginForm({
   if (!session) {
     return (
       <div className="min-h-130 min-w-80 flex items-center justify-center text-2xl pt-7">
-        <div className={cn("w-full max-w-md", className)} {...props}>
+        <div className="w-full max-w-md" {...props}>
           <Card>
             <CardHeader>
               <CardTitle>{loginOrSignUp === "signup" ? "Create an account" : "Login to your account"}</CardTitle>

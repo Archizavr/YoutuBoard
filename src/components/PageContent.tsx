@@ -4,8 +4,6 @@ import { DashboardPage } from './Dashboard';
 import ProfilePage from './Profile';
 import ReportPage from './Reports';
 
-import mockStats from "../../data"
-
 interface PageContentProps {
   currentPage: Page;
 }
@@ -15,7 +13,7 @@ export function PageContent({ currentPage }: PageContentProps) {
     switch (currentPage) {
       case 'dashboard':
         return (
-          <DashboardPage stats={mockStats} />
+          <DashboardPage />
         );
       case 'profile':
         return (

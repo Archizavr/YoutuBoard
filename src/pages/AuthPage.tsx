@@ -4,13 +4,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthProvider";
 import ForgotPassPage from "./ForgotPassPage";
-import { redirect } from "react-router";
-
+import { useNavigate, useLocation } from "react-router";
+import { useEffect } from "react";
 
 export default function AuthPage() {
-  const {register, handleSubmit, errors, serverError, session, isLoading, loginOrSignUp, setLoginOrSignUp, onSubmit, signUpWithGoogle, forgotPass, setForgotPass} = useAuth();
+  const {register, handleSubmit, errors, serverError, session, isLoading, loginOrSignUp, setLoginOrSignUp, onSubmit, signUpWithGoogle, setForgotPass} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  if (forgotPass) {
+  // Sync state with current route
+  useEffect(() => {
+    if (location.pathname === "/auth/login") {
+      setLoginOrSignUp("login");
+      setForgotPass(false);
+    } else if (location.pathname === "/auth/signup") {
+      setLoginOrSignUp("signup");
+      setForgotPass(false);
+    } else if (location.pathname === "/auth/forgot-password") {
+      setForgotPass(true);
+      setLoginOrSignUp("login"); // Keep login state for when user goes back
+    }
+  }, [location.pathname, setLoginOrSignUp, setForgotPass]);
+
+  // Show forgot password page if on forgot-password route
+  if (location.pathname === "/auth/forgot-password") {
     return (
       <ForgotPassPage />
     );
@@ -39,7 +56,7 @@ export default function AuthPage() {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-6 text-lg">
                       <div className="grid gap-3">
-                        <Label htmlFor="email"className="text-lg">Email</Label>
+                        <Label htmlFor="email" className="text-lg">Email</Label>
                         <Input
                           id="email"
                           type="email"
@@ -96,12 +113,10 @@ export default function AuthPage() {
                           Don't have an account?{" "}
                           <button
                             type="button"
-                            onClick={
-                              () => {
-                                setLoginOrSignUp("signup");
-                                redirect("/auth/signup");
-                              }
-                            }
+                            onClick={() => {
+                              setLoginOrSignUp("signup");
+                              navigate("/auth/signup");
+                            }}
                             className="text-base text-blue-600 cursor-pointer hover:underline"
                           >
                             Sign up
@@ -112,12 +127,10 @@ export default function AuthPage() {
                           <div className="text-base">Already have an account?{" "}</div>
                             <button
                               type="button"
-                              onClick={
-                              () => {
+                              onClick={() => {
                                 setLoginOrSignUp("login");
-                                redirect("/auth/login");
-                              }
-                            }
+                                navigate("/auth/login");
+                              }}
                               className=" text-base text-blue-600 cursor-pointer hover:underline"
                             >
                               Login
@@ -130,12 +143,9 @@ export default function AuthPage() {
                         <div className="mt-4 text-center text-sm">
                           <button
                             type="button"
-                            onClick={
-                              () => {
-                                setForgotPass(true)
-                                redirect("/auth/login")
-                              }
-                            }
+                            onClick={() => {
+                              navigate("/auth/forgot-password");
+                            }}
                             className="text-base text-blue-600 cursor-pointer hover:underline"
                           >
                             Forgot your password?

@@ -1,12 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
 import { useAuth } from "@/contexts/AuthProvider";
 
 export default function ForgotPassPage() {
   
   const {registerEmail, handleSubmitEmail, emailErrors, setForgotPass, isLoading, onForgotPasswordSubmit} = useAuth();
+
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-130 min-w-80 flex items-center justify-center text-2xl pt-7">
@@ -40,7 +45,10 @@ export default function ForgotPassPage() {
                 <div className="text-center">
                   <button
                     type="button"
-                    onClick={() => setForgotPass(false)}
+                    onClick={() => {
+                      setForgotPass(false)
+                      navigate("/auth/login");
+                    }}
                     className="text-base text-blue-600 cursor-pointer hover:underline"
                   >
                     Back to login

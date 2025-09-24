@@ -6,8 +6,8 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress"
-import { ChartBarDefault } from './ViewsEachMonth'
-import { QuickActions } from './QuickActions'
+import { ChartBarDefault } from '../components/ViewsEachMonth'
+import { QuickActions } from '../components/QuickActions'
 
 import mockStats from "../../data"
 

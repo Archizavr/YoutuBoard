@@ -5,9 +5,9 @@ import { Outlet } from "react-router";
 import HomePage from "./pages/HomePage";
 import NotFound from "./pages/NotFound";
 import AuthPage from "./pages/AuthPage";
-import { DashboardPage } from "./components/Dashboard";
-import ProfilePage from "./components/Profile";
-import ReportPage from "./components/Reports";
+import { DashboardPage } from "./pages/Dashboard";
+import ProfilePage from "./pages/Profile";
+import ReportPage from "./pages/Reports";
 
 import { AuthProvider } from "./contexts/AuthProvider";
 import AppLayout from "./layouts/AppLayout";

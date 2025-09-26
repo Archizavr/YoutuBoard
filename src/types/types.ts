@@ -28,4 +28,4 @@ export interface DashboardStats {
   monthlyViews: { month: string; views: number }[];
 }
 
-export type Page = 'auth' | 'dashboard' | 'profile' | 'reports';
+export type Page = 'home' | 'auth' | 'dashboard' | 'profile' | 'reports';

@@ -130,8 +130,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } else {
           // console.log('ℹ️ No session found');
           setSession(null);
-          setCurrentPage('auth');
-          navigate('/auth/login');
+          setCurrentPage('home');
+          navigate('/');
         }
       } catch (error) {
         // console.error('💥 Auth initialization error:', error);

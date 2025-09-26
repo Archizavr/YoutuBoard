@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { 
@@ -8,11 +9,13 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 
-import type { Page } from "@/types/types";
-
 import logo from "../bar-chart-icon.svg";
 
+import type { Page } from "@/types/types";
+
 import supabase from '@/supabase-client';
+
+import { useAuth } from '@/contexts/AuthProvider';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -27,6 +30,20 @@ export function Sidebar({
   currentPage,
   onPageChange,
 }: SidebarProps) {
+
+  const { setCurrentPage } = useAuth();
+
+  // Sync state with current route
+  useEffect(() => {
+    if (location.pathname === "/app/profile") {
+      setCurrentPage("profile");
+
+    } else if (location.pathname === "/app/dashboard") {
+      setCurrentPage("dashboard");
+    } else if (location.pathname === "/app/report") {
+      setCurrentPage("reports");
+    }
+  }, [location.pathname, setCurrentPage]);
   
   const navigate = useNavigate();
   

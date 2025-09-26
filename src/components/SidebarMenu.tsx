@@ -37,10 +37,9 @@ export function Sidebar({
   useEffect(() => {
     if (location.pathname === "/app/profile") {
       setCurrentPage("profile");
-
     } else if (location.pathname === "/app/dashboard") {
       setCurrentPage("dashboard");
-    } else if (location.pathname === "/app/report") {
+    } else if (location.pathname === "/app/reports") {
       setCurrentPage("reports");
     }
   }, [location.pathname, setCurrentPage]);
